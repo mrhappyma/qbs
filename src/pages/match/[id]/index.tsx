@@ -1,13 +1,14 @@
 import type { GetServerSidePropsContext, NextPage, PreviewData } from "next";
 import { getSession } from "next-auth/react";
 import Head from "next/head";
-import Header from "../../components/header";
-import { appRouter } from "../../server/api/root";
+import Header from "../../../components/header";
+import { appRouter } from "../../../server/api/root";
 import type { ParsedUrlQuery } from "node:querystring";
 import type { Match, Team } from "@prisma/client";
-import { api } from "../../utils/api";
+import { api } from "../../../utils/api";
 import type { Session } from "next-auth";
 import { useState } from "react";
+import Link from "next/link";
 
 const MatchPage: NextPage<{
   teams: Team[];
@@ -24,11 +25,18 @@ const MatchPage: NextPage<{
 
   api.match.updateDetails.useQuery(form, {
     enabled: submitEnabled,
+    onSuccess() {
+      setSubmitEnabled(false);
+    },
   });
 
   const teamOptions: JSX.Element[] = [];
   for (const team of teams)
-    teamOptions.push(<option value={team.id}>{team.name}</option>);
+    teamOptions.push(
+      <option value={team.id} key={team.id}>
+        {team.name}
+      </option>
+    );
 
   return (
     <>
@@ -53,6 +61,7 @@ const MatchPage: NextPage<{
             });
             setSubmitEnabled(true);
           }}
+          className="mb-3"
         >
           <input
             className="mb-4 rounded-sm border text-3xl hover:border-blue-400"
@@ -88,6 +97,22 @@ const MatchPage: NextPage<{
             Save
           </button>
         </form>
+        <div className="flex flex-row justify-start">
+          <Link href={`/match/${match.id}/score`} className="pl-2">
+            <button className="inline-block rounded border-2 border-blue-600 px-6 py-2 text-xs font-medium uppercase leading-tight text-blue-600 transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0">
+              Score
+            </button>
+          </Link>
+          <a
+            href={`/match/${match.id}/present`}
+            className="pl-2"
+            target="_blank"
+          >
+            <button className="inline-block rounded border-2 border-blue-600 px-6 py-2 text-xs font-medium uppercase leading-tight text-blue-600 transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0">
+              Present
+            </button>
+          </a>
+        </div>
       </main>
     </>
   );
