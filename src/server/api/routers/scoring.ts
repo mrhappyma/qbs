@@ -96,6 +96,7 @@ export const scoringRouter = createTRPCRouter({
         },
         data: {
           scores: JSON.stringify(scores),
+          updatedAt: new Date().toString(),
         },
       });
 
@@ -153,6 +154,70 @@ export const scoringRouter = createTRPCRouter({
         },
         data: {
           scores: JSON.stringify(scores),
+          updatedAt: new Date().toString(),
+        },
+      });
+      return {
+        data: {
+          status: "ok",
+        },
+      };
+    }),
+  override: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+        value: z.object({
+          events: z.array(
+            z.object({
+              type: z.number(),
+              team: z.number().min(1).max(2),
+              score: z.number(),
+            })
+          ),
+        }),
+      })
+    )
+    .query(async ({ input, ctx }) => {
+      if (!ctx.session)
+        return {
+          data: {
+            status: "unauthorized",
+          },
+        };
+
+      const record = await ctx.prisma.match.findUnique({
+        where: {
+          id: input.id,
+        },
+        include: {
+          scorers: true,
+        },
+      });
+      if (!record)
+        return {
+          data: {
+            status: "not-found",
+          },
+        };
+
+      if (
+        ctx.session.user.id != record.userId &&
+        !record.scorers.some((user) => user.id == ctx.session.user.id)
+      )
+        return {
+          data: {
+            status: "forbidden",
+          },
+        };
+
+      await ctx.prisma.match.update({
+        where: {
+          id: input.id,
+        },
+        data: {
+          scores: JSON.stringify(input.value),
+          updatedAt: new Date().toString(),
         },
       });
       return {

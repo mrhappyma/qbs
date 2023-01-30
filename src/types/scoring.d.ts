@@ -19,3 +19,7 @@ declare type addMatchScoreEventResponse = {
 declare type undoLastMatchScoreEventResponse = {
   data: { status: "error" | "not-found" | "forbidden" | "unauthorized" | "ok" };
 };
+
+declare type overrideMatchScoreResponse = {
+  data: { status: "error" | "not-found" | "forbidden" | "unauthorized" | "ok" };
+};
