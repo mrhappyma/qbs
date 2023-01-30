@@ -37,6 +37,7 @@ export const scoringRouter = createTRPCRouter({
       return {
         data: {
           status: "ok",
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           score: JSON.parse(record.scores),
         },
       };
@@ -75,7 +76,9 @@ export const scoringRouter = createTRPCRouter({
 
       if (
         ctx.session.user.id != record.userId &&
-        !record.scorers.some((user) => user.id == ctx.session.user.id)
+        !record.scorers.some(
+          (user: { id: string }) => user.id == ctx.session.user.id
+        )
       )
         return {
           data: {
@@ -83,6 +86,7 @@ export const scoringRouter = createTRPCRouter({
           },
         };
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const scores: matchScore = JSON.parse(record.scores);
       scores.events.push({
         type: matchScoreEventType.add,
@@ -145,6 +149,7 @@ export const scoringRouter = createTRPCRouter({
             status: "forbidden",
           },
         };
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const scores: matchScore = JSON.parse(record.scores);
       scores.events.splice(-1, 1);
 

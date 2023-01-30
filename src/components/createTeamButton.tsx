@@ -26,6 +26,7 @@ const CreateTeamButton: React.FC = () => {
     <div className="ml-4 hidden self-start md:block">
       <button
         className="rounded-lg border border-gray-400 bg-gray-300 p-3 px-3"
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises
         onClick={createTeam}
       >
         <svg

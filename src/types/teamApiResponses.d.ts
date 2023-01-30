@@ -1,4 +1,4 @@
-import { Team } from "@prisma/client";
+import type { Team } from "@prisma/client";
 
 declare type createTeamResponse = {
   data:

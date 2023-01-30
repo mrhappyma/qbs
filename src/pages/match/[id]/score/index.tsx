@@ -1,9 +1,9 @@
-import { Match, Team } from "@prisma/client";
-import { GetServerSidePropsContext, NextPage, PreviewData } from "next";
-import { Session } from "next-auth";
+import type { Match, Team } from "@prisma/client";
+import type { GetServerSidePropsContext, NextPage, PreviewData } from "next";
+import type { Session } from "next-auth";
 import { getSession } from "next-auth/react";
 import Head from "next/head";
-import { ParsedUrlQuery } from "querystring";
+import type { ParsedUrlQuery } from "querystring";
 import { appRouter } from "../../../../server/api/root";
 import { api } from "../../../../utils/api";
 import MatchScoreBox from "../../../../components/matchScoreBox";
@@ -12,13 +12,13 @@ import { useState } from "react";
 import Link from "next/link";
 import Header from "../../../../components/header";
 
-const scoreMatch: NextPage<{
+const ScoreMatch: NextPage<{
   match: Match & {
     Team1: Team;
     Team2: Team;
   };
   session: Session;
-}> = ({ match, session }) => {
+}> = ({ match }) => {
   const [addScoreEnabled, setAddScoreEnabled] = useState<boolean>(false);
   const [undoLastEventEnabled, setUndoLastEventEnabled] =
     useState<boolean>(false);
@@ -34,7 +34,7 @@ const scoreMatch: NextPage<{
   const scoreRequest = api.scoring.fetch.useQuery(
     { id: match.id },
     {
-      onSuccess(data) {
+      onSuccess(data: fetchMatchScoreResponse) {
         if (data.data.status != "ok") throw new Error();
         setScoreData(data.data.score);
       },
@@ -45,9 +45,9 @@ const scoreMatch: NextPage<{
     { id: match.id, team: actionData.team, score: actionData.amount },
     {
       enabled: addScoreEnabled,
-      onSuccess() {
+      async onSuccess() {
         setAddScoreEnabled(false);
-        scoreRequest.refetch();
+        await scoreRequest.refetch();
       },
     }
   );
@@ -56,9 +56,9 @@ const scoreMatch: NextPage<{
     { id: match.id, team: undoData.team },
     {
       enabled: undoLastEventEnabled,
-      onSuccess() {
+      async onSuccess() {
         setUndoLastEventEnabled(false);
-        scoreRequest.refetch();
+        await scoreRequest.refetch();
       },
     }
   );
@@ -110,7 +110,7 @@ const scoreMatch: NextPage<{
   );
 };
 
-export default scoreMatch;
+export default ScoreMatch;
 
 export const getServerSideProps = async (
   context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>

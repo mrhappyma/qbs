@@ -1,32 +1,33 @@
-import { Match, Team } from "@prisma/client";
-import { GetServerSidePropsContext, NextPage, PreviewData } from "next";
-import { Session } from "next-auth";
+import type { Match, Team } from "@prisma/client";
+import type { GetServerSidePropsContext, NextPage, PreviewData } from "next";
+import type { Session } from "next-auth";
 import { getSession } from "next-auth/react";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { ParsedUrlQuery } from "querystring";
+import type { ParsedUrlQuery } from "querystring";
 import { useState } from "react";
 import Header from "../../../../components/header";
 import { appRouter } from "../../../../server/api/root";
 import { api } from "../../../../utils/api";
 
-const editRawData: NextPage<{
+const EditRawData: NextPage<{
   match: Match & {
     Team1: Team;
     Team2: Team;
   };
   session: Session;
-}> = ({ match, session }) => {
+}> = ({ match }) => {
   const router = useRouter();
 
   const [form, setForm] = useState<{ value: string }>({ value: match.scores });
   const [submitEnabled, setSubmitEnabled] = useState<boolean>(false);
   api.scoring.override.useQuery(
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     { id: match.id, value: JSON.parse(form.value) },
     {
       enabled: submitEnabled,
-      onSuccess() {
-        router.push(`/match/${match.id}/score`);
+      async onSuccess() {
+        await router.push(`/match/${match.id}/score`);
       },
     }
   );
@@ -69,7 +70,7 @@ const editRawData: NextPage<{
   );
 };
 
-export default editRawData;
+export default EditRawData;
 
 export const getServerSideProps = async (
   context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>

@@ -9,8 +9,8 @@ const MatchScoreBox: React.FC<{
   team: number;
 }> = (props) => {
   const stuff: JSX.Element[] = [];
-  let totalScore: number = 0;
-  let keys: number = 0;
+  let totalScore = 0;
+  let keys = 0;
   for (const event of props.data.events) {
     if (
       event.type == matchScoreEventType.add &&
@@ -40,8 +40,11 @@ const MatchScoreBox: React.FC<{
 
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    // take that, typechecking errors i don't know how to deal with
   };
 
   useEffect(() => {

@@ -1,24 +1,23 @@
-import { Match, Team } from "@prisma/client";
-import { GetServerSidePropsContext, NextPage, PreviewData } from "next";
-import { Session } from "next-auth";
+import type { Match, Team } from "@prisma/client";
+import type { GetServerSidePropsContext, NextPage, PreviewData } from "next";
+import type { Session } from "next-auth";
 import { getSession } from "next-auth/react";
-import { ParsedUrl } from "next/dist/shared/lib/router/utils/parse-url";
 import Head from "next/head";
-import { ParsedUrlQuery } from "node:querystring";
+import type { ParsedUrlQuery } from "node:querystring";
 import { useState } from "react";
 import MatchScoreBox from "../../../../components/matchScoreBox";
 import { appRouter } from "../../../../server/api/root";
 import { api } from "../../../../utils/api";
 
-const presentScores: NextPage<{
+const PresentScores: NextPage<{
   match: Match & {
     Team1: Team;
     Team2: Team;
   };
   session: Session | null;
-}> = ({ match, session }) => {
+}> = ({ match }) => {
   const [scoreData, setScoreData] = useState<matchScore>({ events: [] });
-  const scores = api.scoring.fetch.useQuery(
+  api.scoring.fetch.useQuery(
     { id: match.id },
     {
       onSuccess(data) {
@@ -37,18 +36,22 @@ const presentScores: NextPage<{
       <main className="flex h-screen max-h-screen w-screen flex-col justify-center">
         <div className="grid grid-cols-2">
           <div
-            className={`flex h-screen  flex-col items-center justify-center border border-slate-700 bg-gradient-to-b from-${match.Team1.color1} to-[${match.Team1.color2}]`}
+            className={`flex h-screen  flex-col items-center justify-center border border-slate-700`}
             style={{
-              background: `linear-gradient(to top, ${match.Team1.color1} 0%, ${match.Team1.color2} 100%)`,
+              background: `linear-gradient(to top, ${
+                match.Team1.color1 ?? "#FFFFFF"
+              } 0%, ${match.Team1.color2 ?? "#FFFFFF"} 100%)`,
             }}
           >
             <div className="text-center text-2xl">{match.Team1.name}</div>
             <MatchScoreBox data={scoreData} team={1} />
           </div>
           <div
-            className={`flex h-screen  flex-col items-center justify-center border border-slate-700 bg-gradient-to-b from-${match.Team2.color1} to-[${match.Team2.color2}`}
+            className={`flex h-screen  flex-col items-center justify-center border border-slate-700`}
             style={{
-              background: `linear-gradient(to top, ${match.Team2.color1} 0%, ${match.Team2.color2} 100%)`,
+              background: `linear-gradient(to top, ${
+                match.Team2.color1 ?? "#FFFFFF"
+              } 0%, ${match.Team2.color2 ?? "#FFFFFF"} 100%)`,
             }}
           >
             <div className="text-center text-2xl">{match.Team2.name}</div>
@@ -60,7 +63,7 @@ const presentScores: NextPage<{
   );
 };
 
-export default presentScores;
+export default PresentScores;
 
 export const getServerSideProps = async (
   context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
