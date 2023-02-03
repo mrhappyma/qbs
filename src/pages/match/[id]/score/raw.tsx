@@ -9,6 +9,7 @@ import { useState } from "react";
 import Header from "../../../../components/header";
 import { appRouter } from "../../../../server/api/root";
 import { api } from "../../../../utils/api";
+import { prisma } from "../../../../server/db";
 
 const EditRawData: NextPage<{
   match: Match & {
@@ -89,7 +90,7 @@ export const getServerSideProps = async (
 
   const caller = appRouter.createCaller({
     session: session,
-    prisma: global.prisma!,
+    prisma: prisma,
   });
 
   const match = await caller.match.fetch({ id });

@@ -8,6 +8,7 @@ import type { Team } from "@prisma/client";
 import { api } from "../../utils/api";
 import type { Session } from "next-auth";
 import { useState } from "react";
+import { prisma } from "../../server/db";
 
 const TeamPage: NextPage<{ team: Team; session: Session }> = ({ team }) => {
   const [form, setForm] = useState<{
@@ -114,7 +115,7 @@ export const getServerSideProps = async (
 
   const caller = appRouter.createCaller({
     session: session,
-    prisma: global.prisma!,
+    prisma: prisma,
   });
 
   const team = await caller.team.fetch({ id });

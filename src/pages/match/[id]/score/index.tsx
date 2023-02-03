@@ -11,6 +11,7 @@ import MatchScoreButtons from "../../../../components/matchScoreButtons";
 import { useState } from "react";
 import Link from "next/link";
 import Header from "../../../../components/header";
+import { prisma } from "../../../../server/db";
 
 const ScoreMatch: NextPage<{
   match: Match & {
@@ -38,6 +39,7 @@ const ScoreMatch: NextPage<{
         if (data.data.status != "ok") throw new Error();
         setScoreData(data.data.score);
       },
+      refetchInterval: 1000,
     }
   );
 
@@ -129,7 +131,7 @@ export const getServerSideProps = async (
 
   const caller = appRouter.createCaller({
     session: session,
-    prisma: global.prisma!,
+    prisma: prisma,
   });
 
   const match = await caller.match.fetch({ id });

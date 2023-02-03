@@ -8,6 +8,7 @@ import { useState } from "react";
 import MatchScoreBox from "../../../../components/matchScoreBox";
 import { appRouter } from "../../../../server/api/root";
 import { api } from "../../../../utils/api";
+import { prisma } from "../../../../server/db";
 
 const PresentScores: NextPage<{
   match: Match & {
@@ -74,7 +75,7 @@ export const getServerSideProps = async (
 
   const caller = appRouter.createCaller({
     session: session,
-    prisma: global.prisma!,
+    prisma: prisma,
   });
 
   const match = await caller.match.fetch({ id });

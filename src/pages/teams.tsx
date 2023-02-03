@@ -8,6 +8,7 @@ import CreateTeamButton from "../components/createTeamButton";
 import Header from "../components/header";
 import { appRouter } from "../server/api/root";
 import type { minimalTeamData } from "../types/teamApiResponses";
+import { prisma } from "../server/db";
 
 const Teams: NextPage<{ teams: minimalTeamData[]; session: Session }> = ({
   teams,
@@ -84,7 +85,7 @@ export async function getServerSideProps(
 
   const caller = appRouter.createCaller({
     session: session,
-    prisma: global.prisma!,
+    prisma: prisma,
   });
   const teams = await caller.team.list();
 

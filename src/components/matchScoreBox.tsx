@@ -1,5 +1,8 @@
 import { useEffect, useRef } from "react";
 import { matchScoreEventType } from "../utils/enums";
+import { Orbitron } from "@next/font/google";
+
+const orbitron = Orbitron({ subsets: ["latin"] });
 
 /**
  * Scrollable box with match score events
@@ -18,7 +21,7 @@ const MatchScoreBox: React.FC<{
       event.score > 0
     ) {
       stuff.push(
-        <div className="text-xl text-green-600" key={keys++}>
+        <div className="text-[6vh] text-green-600" key={keys++}>
           +{event.score}
         </div>
       );
@@ -30,7 +33,7 @@ const MatchScoreBox: React.FC<{
       event.score < 0
     ) {
       stuff.push(
-        <div className="text-xl text-red-600" key={keys++}>
+        <div className="text-[6vh] text-red-600" key={keys++}>
           {event.score}
         </div>
       );
@@ -50,11 +53,12 @@ const MatchScoreBox: React.FC<{
   useEffect(() => {
     scrollToBottom();
   });
-
   return (
-    <div className={`h-full max-h-full w-full max-w-full overflow-scroll p-2 `}>
+    <div
+      className={`h-full max-h-full w-full max-w-full overflow-scroll p-2 ${orbitron.className}`}
+    >
       {stuff}
-      <div className="text-2xl text-slate-800">{totalScore}</div>
+      <div className="text-[10vh] text-slate-800">{totalScore}</div>
       <div ref={messagesEndRef} />
     </div>
   );

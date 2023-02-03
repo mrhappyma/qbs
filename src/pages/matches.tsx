@@ -8,6 +8,7 @@ import CreateMatchButton from "../components/createMatchButton";
 import Header from "../components/header";
 import { appRouter } from "../server/api/root";
 import type { minimalMatchData } from "../types/matchApiResponses";
+import { prisma } from "../server/db";
 
 const Matches: NextPage<{ matches: minimalMatchData[]; session: Session }> = ({
   matches,
@@ -86,7 +87,7 @@ export async function getServerSideProps(
 
   const caller = appRouter.createCaller({
     session: session,
-    prisma: global.prisma!,
+    prisma: prisma,
   });
   const matches = await caller.match.list();
 
