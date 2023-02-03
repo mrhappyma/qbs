@@ -27,6 +27,7 @@ specifiers:
   prisma: ^4.8.0
   react: 18.2.0
   react-dom: 18.2.0
+  react-full-screen: ^1.1.1
   superjson: 1.9.1
   tailwindcss: ^3.2.0
   typescript: ^4.9.4
@@ -46,6 +47,7 @@ dependencies:
   next-auth: 4.18.8_q76c2b4vyoegvsbrcwkfvimnai
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-full-screen: 1.1.1_react@18.2.0
   superjson: 1.9.1
   unique-names-generator: 4.7.1
   zod: 3.20.2
@@ -1453,6 +1455,10 @@ packages:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
     dev: true
 
+  /fscreen/1.2.0:
+    resolution: {integrity: sha512-hlq4+BU0hlPmwsFjwGGzZ+OZ9N/wq9Ljg/sq3pX+2CD7hrJsX9tJgWWK/wiNTFM212CLHWhicOoqwXyZGGetJg==}
+    dev: false
+
   /fsevents/2.3.2:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
@@ -2402,6 +2408,16 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: false
+
+  /react-full-screen/1.1.1_react@18.2.0:
+    resolution: {integrity: sha512-xoEgkoTiN0dw9cjYYGViiMCBYbkS97BYb4bHPhQVWXj1UnOs8PZ1rPzpX+2HMhuvQV1jA5AF9GaRbO3fA5aZtg==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: '>= 16.8.0'
+    dependencies:
+      fscreen: 1.2.0
+      react: 18.2.0
     dev: false
 
   /react-is/16.13.1:

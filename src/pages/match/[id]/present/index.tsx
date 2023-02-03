@@ -9,6 +9,7 @@ import MatchScoreBox from "../../../../components/matchScoreBox";
 import { appRouter } from "../../../../server/api/root";
 import { api } from "../../../../utils/api";
 import { prisma } from "../../../../server/db";
+import { FullScreen, useFullScreenHandle } from "react-full-screen";
 
 const PresentScores: NextPage<{
   match: Match & {
@@ -29,37 +30,65 @@ const PresentScores: NextPage<{
     }
   );
 
+  const handleFullScreen = useFullScreenHandle();
+  const [hideFullScreenBar, setHideFullScreenBar] = useState(false);
+  const handleHideFullScreenBar = () => {
+    setHideFullScreenBar(true);
+  };
+
   return (
     <>
       <Head>
         <title>Present Scores</title>
       </Head>
-      <main className="flex h-screen max-h-screen w-screen flex-col justify-center">
-        <div className="grid grid-cols-2">
-          <div
-            className={`flex h-screen  flex-col items-center justify-center border border-slate-700`}
-            style={{
-              background: `linear-gradient(to top, ${
-                match.Team1.color1 ?? "#FFFFFF"
-              } 0%, ${match.Team1.color2 ?? "#FFFFFF"} 100%)`,
-            }}
-          >
-            <div className="text-center text-2xl">{match.Team1.name}</div>
-            <MatchScoreBox data={scoreData} team={1} />
+      <FullScreen handle={handleFullScreen}>
+        <main className="flex h-screen max-h-screen w-screen flex-col justify-center">
+          <div className="grid grid-cols-2">
+            <div
+              className={`flex h-screen  flex-col items-center justify-center border border-slate-700`}
+              style={{
+                background: `linear-gradient(to top, ${
+                  match.Team1.color1 ?? "#FFFFFF"
+                } 0%, ${match.Team1.color2 ?? "#FFFFFF"} 100%)`,
+              }}
+            >
+              <div className="text-center text-2xl">{match.Team1.name}</div>
+              <MatchScoreBox data={scoreData} team={1} />
+            </div>
+            <div
+              className={`flex h-screen  flex-col items-center justify-center border border-slate-700`}
+              style={{
+                background: `linear-gradient(to top, ${
+                  match.Team2.color1 ?? "#FFFFFF"
+                } 0%, ${match.Team2.color2 ?? "#FFFFFF"} 100%)`,
+              }}
+            >
+              <div className="text-center text-2xl">{match.Team2.name}</div>
+              <MatchScoreBox data={scoreData} team={2} />
+            </div>
           </div>
-          <div
-            className={`flex h-screen  flex-col items-center justify-center border border-slate-700`}
-            style={{
-              background: `linear-gradient(to top, ${
-                match.Team2.color1 ?? "#FFFFFF"
-              } 0%, ${match.Team2.color2 ?? "#FFFFFF"} 100%)`,
-            }}
-          >
-            <div className="text-center text-2xl">{match.Team2.name}</div>
-            <MatchScoreBox data={scoreData} team={2} />
+        </main>
+        {!handleFullScreen.active && !hideFullScreenBar && (
+          <div className="flex flex-row justify-around">
+            <button
+              className="border border-blue-500 text-2xl"
+              onClick={() => {
+                void handleFullScreen.enter();
+              }}
+            >
+              enter fullscreen
+            </button>
+            <button
+              className="border border-blue-500 text-2xl"
+              onClick={() => {
+                handleHideFullScreenBar();
+              }}
+            >
+              hide this
+            </button>
           </div>
-        </div>
-      </main>
+        )}
+      </FullScreen>
     </>
   );
 };
