@@ -58,7 +58,9 @@ const MatchScoreBox: React.FC<{
       className={`h-full max-h-full w-full max-w-full overflow-scroll p-2 ${orbitron.className}`}
     >
       {stuff}
-      <div className="text-[10vh] text-slate-800">{totalScore}</div>
+      <div className="text-[10vh] text-slate-800 dark:text-[#f8f8f2]">
+        {totalScore}
+      </div>
       <div ref={messagesEndRef} />
     </div>
   );

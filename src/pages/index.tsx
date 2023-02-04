@@ -10,7 +10,9 @@ const Home: NextPage = () => {
       <Head>
         <title>QuizBowl Score</title>
       </Head>
-      <Header />
+      <div className="h-screen w-screen dark:bg-[#282a36] dark:text-[#f8f8f2]">
+        <Header />
+      </div>
     </>
   );
 };
@@ -20,7 +22,6 @@ export default Home;
 export async function getServerSideProps(
   context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
 ) {
-  // this type is not proper but works?
   const session = await getSession(context);
 
   if (!session) {

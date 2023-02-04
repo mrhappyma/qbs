@@ -69,9 +69,9 @@ const PresentScores: NextPage<{
           </div>
         </main>
         {!handleFullScreen.active && !hideFullScreenBar && (
-          <div className="flex flex-row justify-around">
+          <div className="flex flex-row justify-around dark:bg-[#282a36] dark:text-[#f8f8f2]">
             <button
-              className="border border-blue-500 text-2xl"
+              className="border border-blue-500 p-2 text-2xl dark:border-[#6272a4]"
               onClick={() => {
                 void handleFullScreen.enter();
               }}
@@ -79,7 +79,7 @@ const PresentScores: NextPage<{
               enter fullscreen
             </button>
             <button
-              className="border border-blue-500 text-2xl"
+              className="border border-blue-500 p-2 text-2xl dark:border-[#6272a4]"
               onClick={() => {
                 handleHideFullScreenBar();
               }}

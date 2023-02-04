@@ -25,7 +25,7 @@ const CreateTeamButton: React.FC = () => {
   return (
     <div className="ml-4 hidden self-start md:block">
       <button
-        className="rounded-lg border border-gray-400 bg-gray-300 p-3 px-3"
+        className="rounded-lg border border-gray-400 bg-gray-300 p-3 px-3 dark:bg-[#282a36] dark:hover:bg-[#44475a]"
         // eslint-disable-next-line @typescript-eslint/no-misused-promises
         onClick={createTeam}
       >
