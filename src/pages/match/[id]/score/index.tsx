@@ -6,12 +6,12 @@ import Head from "next/head";
 import type { ParsedUrlQuery } from "querystring";
 import { appRouter } from "../../../../server/api/root";
 import { api } from "../../../../utils/api";
-import MatchScoreBox from "../../../../components/matchScoreBox";
 import MatchScoreButtons from "../../../../components/matchScoreButtons";
 import { useState } from "react";
 import Link from "next/link";
 import Header from "../../../../components/header";
 import { prisma } from "../../../../server/db";
+import MinimalScoreBox from "../../../../components/minimalScoreBox";
 
 const ScoreMatch: NextPage<{
   match: Match & {
@@ -70,13 +70,15 @@ const ScoreMatch: NextPage<{
       <Head>
         <title>Score Match</title>
       </Head>
-      <div className=" dark:bg-[#282a36] dark:text-[#f8f8f2]">
+      <div className="h-screen dark:bg-[#282a36] dark:text-[#f8f8f2]">
         <Header />
         <main className="flex flex-col justify-center">
           <div className="m-4 grid grid-cols-2 gap-2">
-            <div className="flex h-screen  flex-col items-center justify-center border border-slate-700">
+            <div className="flex h-fit flex-col items-center justify-center border border-slate-700">
               <div className="text-center text-2xl">{match.Team1.name}</div>
-              <MatchScoreBox data={scoreData ?? { events: [] }} team={1} />
+              <div className="h-full">
+                <MinimalScoreBox data={scoreData ?? { events: [] }} team={1} />
+              </div>
               <MatchScoreButtons
                 team={1}
                 actionDataState={setActionData}
@@ -85,9 +87,11 @@ const ScoreMatch: NextPage<{
                 undoEnableState={setUndoLastEventEnabled}
               />
             </div>
-            <div className="flex h-screen  flex-col items-center justify-center border border-slate-700">
+            <div className="flex h-fit flex-col items-center justify-center border border-slate-700">
               <div className="text-center text-2xl">{match.Team2.name}</div>
-              <MatchScoreBox data={scoreData ?? { events: [] }} team={2} />
+              <div className="h-fit">
+                <MinimalScoreBox data={scoreData ?? { events: [] }} team={2} />
+              </div>
               <MatchScoreButtons
                 team={2}
                 actionDataState={setActionData}
