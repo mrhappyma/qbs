@@ -1,28 +1,30 @@
-# Create T3 App
+# Quizbowl Score
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+##### (qbs)
 
-## What's next? How do I make an app with this?
+A match scoring system based on [Lancaster-Lebanon Quiz Bowl League](https://www.qbwiki.com/wiki/Lancaster-Lebanon_League) format, but could probably be used for quite a bit more too.
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## Screenshots
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+![scoring a match (dark mode)](demo-images/dark/score.png#gh-dark-mode-only)
+![scoring a match (light mode)](demo-images/light/score.png#gh-light-mode-only)
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+![presenting scores](demo-images/present.png)
+*gradients are customized per team*
 
-## Learn More
+![configuring match settings (dark mode)](demo-images/dark/match-settings.png#gh-dark-mode-only)
+![configuring match settings (light mode)](demo-images/light/match-settings.png#gh-light-mode-only)
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+![configuring team settings (dark mode)](demo-images/dark/team-settings.png#gh-dark-mode-only)
+![configuring team settings (light mode)](demo-images/light/team-settings.png#gh-light-mode-only)
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+## Development
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+This project uses the [t3 stack](https://create.t3.gg): next.js, tailwindcss, prisma, and trpc (all with typescript of course).
 
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+- Get started by cloning the repo
+- `cd` into it and run `pnpm install`, or the similar command of some other package manager
+- Create your `.env` file, and fill in the values following `.env.example` as an example. You'll need a google account and a postgresql server.
+- Run `pnpm dev` (or again a similar command for your package manager) to start the development server
+- Open `localhost:3000`
+- Get to work!
