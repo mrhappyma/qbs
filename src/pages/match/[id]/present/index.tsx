@@ -52,7 +52,7 @@ const PresentScores: NextPage<{
                 } 0%, ${match.Team1.color2 ?? "#FFFFFF"} 100%)`,
               }}
             >
-              <div className="text-center text-2xl">{match.Team1.name}</div>
+              <div className="text-center text-[5vh]">{match.Team1.name}</div>
               <MatchScoreBox data={scoreData} team={1} />
             </div>
             <div
@@ -63,7 +63,7 @@ const PresentScores: NextPage<{
                 } 0%, ${match.Team2.color2 ?? "#FFFFFF"} 100%)`,
               }}
             >
-              <div className="text-center text-2xl">{match.Team2.name}</div>
+              <div className="text-center text-[5vh]">{match.Team2.name}</div>
               <MatchScoreBox data={scoreData} team={2} />
             </div>
           </div>
