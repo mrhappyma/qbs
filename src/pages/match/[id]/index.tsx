@@ -44,78 +44,79 @@ const MatchPage: NextPage<{
       <Head>
         <title>{match.name}</title>
       </Head>
-      <Header />
-      <main className="m-4">
-        <form
-          onSubmit={(event: React.SyntheticEvent) => {
-            event.preventDefault();
-            const target = event.target as typeof event.target & {
-              name: { value: string };
-              team1: { value: string };
-              team2: { value: string };
-            };
-            setForm({
-              id: match.id,
-              name: target.name.value,
-              team1: target.team1.value,
-              team2: target.team2.value,
-            });
-            setSubmitEnabled(true);
-          }}
-          className="mb-3"
-        >
-          <input
-            className="mb-4 rounded-sm border text-3xl hover:border-blue-400"
-            type="text"
-            name="name"
-            defaultValue={match.name}
-            minLength={3}
-            // eslint-disable-next-line @typescript-eslint/no-misused-promises
-          />
-          <br />
-          <h3 className="pt-4 text-xl">Teams</h3>
+      <div className="h-screen w-screen dark:bg-[#282a36] dark:text-[#f8f8f2]">
+        <Header />
+        <main className="m-4">
+          <form
+            onSubmit={(event: React.SyntheticEvent) => {
+              event.preventDefault();
+              const target = event.target as typeof event.target & {
+                name: { value: string };
+                team1: { value: string };
+                team2: { value: string };
+              };
+              setForm({
+                id: match.id,
+                name: target.name.value,
+                team1: target.team1.value,
+                team2: target.team2.value,
+              });
+              setSubmitEnabled(true);
+            }}
+            className="mb-3"
+          >
+            <input
+              className="mb-4 rounded-sm border text-3xl hover:border-blue-400 dark:bg-[#282a36] dark:text-[#f8f8f2] dark:hover:bg-[#44475a]"
+              type="text"
+              name="name"
+              defaultValue={match.name}
+              minLength={3}
+            />
+            <br />
+            <h3 className="pt-4 text-xl">Teams</h3>
+            <div className="flex flex-row justify-start">
+              <select
+                name="team1"
+                className="m-3 dark:bg-[#282a36] dark:text-[#f8f8f2] dark:hover:bg-[#44475a]"
+                defaultValue={match.team1Id ?? undefined}
+              >
+                {teamOptions}
+              </select>
+              <div className="text-center text-sm">vs</div>
+              <select
+                name="team2"
+                className="m-3 dark:bg-[#282a36] dark:text-[#f8f8f2] dark:hover:bg-[#44475a]"
+                defaultValue={match.team2Id ?? undefined}
+              >
+                {teamOptions}
+              </select>
+            </div>
+            <button
+              type="submit"
+              className="inline-block rounded border-2 border-blue-600 px-6 py-2 text-xs font-medium uppercase leading-tight text-blue-600 transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
+            >
+              Save
+            </button>
+          </form>
           <div className="flex flex-row justify-start">
-            <select
-              name="team1"
-              className="m-3"
-              defaultValue={match.team1Id ?? undefined}
+            <Link href={`/match/${match.id}/score`} className="pl-2">
+              <button className="inline-block rounded border-2 border-blue-600 px-6 py-2 text-xs font-medium uppercase leading-tight text-blue-600 transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0">
+                Score
+              </button>
+            </Link>
+            <a
+              href={`/match/${match.id}/present`}
+              className="pl-2"
+              target="_blank"
+              rel="noreferrer"
             >
-              {teamOptions}
-            </select>
-            <div className="text-center text-sm">vs</div>
-            <select
-              name="team2"
-              className="m-3"
-              defaultValue={match.team2Id ?? undefined}
-            >
-              {teamOptions}
-            </select>
+              <button className="inline-block rounded border-2 border-blue-600 px-6 py-2 text-xs font-medium uppercase leading-tight text-blue-600 transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0">
+                Present
+              </button>
+            </a>
           </div>
-          <button
-            type="submit"
-            className="inline-block rounded border-2 border-blue-600 px-6 py-2 text-xs font-medium uppercase leading-tight text-blue-600 transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
-          >
-            Save
-          </button>
-        </form>
-        <div className="flex flex-row justify-start">
-          <Link href={`/match/${match.id}/score`} className="pl-2">
-            <button className="inline-block rounded border-2 border-blue-600 px-6 py-2 text-xs font-medium uppercase leading-tight text-blue-600 transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0">
-              Score
-            </button>
-          </Link>
-          <a
-            href={`/match/${match.id}/present`}
-            className="pl-2"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <button className="inline-block rounded border-2 border-blue-600 px-6 py-2 text-xs font-medium uppercase leading-tight text-blue-600 transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0">
-              Present
-            </button>
-          </a>
-        </div>
-      </main>
+        </main>
+      </div>
     </>
   );
 };

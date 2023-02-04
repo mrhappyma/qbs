@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Header: React.FC = () => {
   return (
-    <div className="mb-6 border-b border-gray-200 bg-gray-100 pt-4">
+    <div className="mb-6 border-b border-gray-200 bg-gray-100 pt-4 text-[#f8f8f2] dark:border-[#44475a] dark:bg-[#282a36]">
       <div className="md:md-6 container mx-auto mb-4">
         <header className="ml-4 flex items-center justify-between px-2  md:px-0">
           <Link className="flex items-center" href="/">
@@ -23,14 +23,17 @@ const Header: React.FC = () => {
                 clipRule="evenodd"
               />
             </svg>
-            <div className="ml-3 truncate text-lg font-semibold" role="banner">
+            <div
+              className="ml-3 truncate text-lg font-semibold dark:text-[#f8f8f2] dark:hover:text-[#44475a]"
+              role="banner"
+            >
               QuizBowl Score
             </div>
           </Link>
           <nav className="flex items-center">
             <Link
               href="/api/auth/signout"
-              className="  hidden px-2 py-1 text-gray-600 hover:text-gray-800 sm:inline-block"
+              className="hidden  px-2 py-1 text-gray-600 hover:text-gray-800 dark:text-[#f8f8f2] hover:dark:text-[#44475a] sm:inline-block"
             >
               Logout
             </Link>
@@ -38,13 +41,13 @@ const Header: React.FC = () => {
         </header>
         <nav className="navigation relative left-1 flex items-center overflow-auto md:container md:-left-3 md:mx-auto md:px-0">
           <Link
-            className="group relative m-2 whitespace-nowrap pl-3 text-gray-600 hover:text-gray-800"
+            className="group relative m-2 whitespace-nowrap pl-3 text-gray-600 hover:text-gray-800 dark:text-[#f8f8f2] hover:dark:text-[#44475a]"
             href="/matches"
           >
             Matches
           </Link>
           <Link
-            className="group relative m-2 whitespace-nowrap text-gray-600 hover:text-gray-800"
+            className="group relative m-2 whitespace-nowrap text-gray-600 hover:text-gray-800 dark:text-[#f8f8f2] hover:dark:text-[#44475a]"
             href="/teams"
           >
             Teams

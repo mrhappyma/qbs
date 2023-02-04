@@ -19,7 +19,7 @@ const Matches: NextPage<{ matches: minimalMatchData[]; session: Session }> = ({
       <tr>
         <td>
           <Link
-            className="text-blue-400 hover:text-blue-700"
+            className="text-blue-400 hover:text-blue-700 dark:text-[#f8f8f2] dark:hover:text-[#44475a]"
             href={`/match/${match.id}`}
           >
             {match.name}
@@ -37,34 +37,36 @@ const Matches: NextPage<{ matches: minimalMatchData[]; session: Session }> = ({
       <Head>
         <title>Matches</title>
       </Head>
-      <Header />
-      <main className="container mx-auto pb-20 md:pb-24 ">
-        <section className="mb-24">
-          <header className="mb-8">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <h1 className="m-3 mb-2 text-3xl font-semibold leading-tight tracking-tight">
-                  Matches
-                </h1>
+      <div className="h-screen w-screen dark:bg-[#282a36] dark:text-[#f8f8f2]">
+        <Header />
+        <main className="container mx-auto pb-20 md:pb-24">
+          <section className="mb-24">
+            <header className="mb-8">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center">
+                  <h1 className="m-3 mb-2 text-3xl font-semibold leading-tight tracking-tight">
+                    Matches
+                  </h1>
+                </div>
               </div>
+            </header>
+            <CreateMatchButton />
+            <div className="m-3 flex justify-start">
+              <table className="w-full table-auto border-collapse text-sm">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Team 1</th>
+                    <th>Team 2</th>
+                    <th>Last Updated</th>
+                  </tr>
+                </thead>
+                <tbody>{tableItems}</tbody>
+              </table>
             </div>
-          </header>
-          <CreateMatchButton />
-          <div className="m-3 flex justify-start">
-            <table className="w-full table-auto border-collapse text-sm">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Team 1</th>
-                  <th>Team 2</th>
-                  <th>Last Updated</th>
-                </tr>
-              </thead>
-              <tbody>{tableItems}</tbody>
-            </table>
-          </div>
-        </section>
-      </main>
+          </section>
+        </main>
+      </div>
     </>
   );
 };

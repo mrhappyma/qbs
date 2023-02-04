@@ -70,44 +70,46 @@ const ScoreMatch: NextPage<{
       <Head>
         <title>Score Match</title>
       </Head>
-      <Header />
-      <main className="flex flex-col justify-center">
-        <div className="m-4 grid grid-cols-2 gap-2">
-          <div className="flex h-screen  flex-col items-center justify-center border border-slate-700">
-            <div className="text-center text-2xl">{match.Team1.name}</div>
-            <MatchScoreBox data={scoreData ?? { events: [] }} team={1} />
-            <MatchScoreButtons
-              team={1}
-              actionDataState={setActionData}
-              requestEnableState={setAddScoreEnabled}
-              undoDataState={setUndoData}
-              undoEnableState={setUndoLastEventEnabled}
-            />
+      <div className=" dark:bg-[#282a36] dark:text-[#f8f8f2]">
+        <Header />
+        <main className="flex flex-col justify-center">
+          <div className="m-4 grid grid-cols-2 gap-2">
+            <div className="flex h-screen  flex-col items-center justify-center border border-slate-700">
+              <div className="text-center text-2xl">{match.Team1.name}</div>
+              <MatchScoreBox data={scoreData ?? { events: [] }} team={1} />
+              <MatchScoreButtons
+                team={1}
+                actionDataState={setActionData}
+                requestEnableState={setAddScoreEnabled}
+                undoDataState={setUndoData}
+                undoEnableState={setUndoLastEventEnabled}
+              />
+            </div>
+            <div className="flex h-screen  flex-col items-center justify-center border border-slate-700">
+              <div className="text-center text-2xl">{match.Team2.name}</div>
+              <MatchScoreBox data={scoreData ?? { events: [] }} team={2} />
+              <MatchScoreButtons
+                team={2}
+                actionDataState={setActionData}
+                requestEnableState={setAddScoreEnabled}
+                undoDataState={setUndoData}
+                undoEnableState={setUndoLastEventEnabled}
+              />
+            </div>
           </div>
-          <div className="flex h-screen  flex-col items-center justify-center border border-slate-700">
-            <div className="text-center text-2xl">{match.Team2.name}</div>
-            <MatchScoreBox data={scoreData ?? { events: [] }} team={2} />
-            <MatchScoreButtons
-              team={2}
-              actionDataState={setActionData}
-              requestEnableState={setAddScoreEnabled}
-              undoDataState={setUndoData}
-              undoEnableState={setUndoLastEventEnabled}
-            />
-          </div>
-        </div>
-        <Link
-          href={`/match/${match.id}/score/raw`}
-          className="flex justify-center p-1"
-        >
-          <button
-            type="button"
-            className="inline-block rounded border-2 border-gray-800 px-6 py-2 text-xs font-medium uppercase leading-tight text-gray-800 transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
+          <Link
+            href={`/match/${match.id}/score/raw`}
+            className="flex justify-center p-1"
           >
-            edit raw data
-          </button>
-        </Link>
-      </main>
+            <button
+              type="button"
+              className="inline-block rounded border-2 border-gray-800 px-6 py-2 text-xs font-medium uppercase leading-tight text-gray-800 transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 dark:border-[#44475a] dark:text-[#f8f8f2] dark:hover:bg-[#44475a]"
+            >
+              edit raw data
+            </button>
+          </Link>
+        </main>
+      </div>
     </>
   );
 };

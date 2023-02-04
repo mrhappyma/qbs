@@ -38,35 +38,37 @@ const EditRawData: NextPage<{
       <Head>
         <title>Edit raw match data</title>
       </Head>
-      <Header />
-      <main className="m-1 flex h-screen w-screen justify-center">
-        <form
-          onSubmit={(event: React.SyntheticEvent) => {
-            event.preventDefault();
-            const target = event.target as typeof event.target & {
-              value: { value: string };
-            };
-            setForm({
-              value: target.value.value,
-            });
-            setSubmitEnabled(true);
-          }}
-        >
-          <textarea
-            name="value"
-            defaultValue={match.scores}
-            className="m-2 h-3/5 w-[90vh] border border-blue-400"
-            cols={21}
-          />
-          <br />
-          <button
-            type="submit"
-            className="inline-block rounded border-2 border-blue-600 px-6 py-2 text-xs font-medium uppercase leading-tight text-blue-600 transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
+      <div className="dark:bg-[#282a36] dark:text-[#f8f8f2]">
+        <Header />
+        <main className="m-1 flex h-screen w-screen justify-center">
+          <form
+            onSubmit={(event: React.SyntheticEvent) => {
+              event.preventDefault();
+              const target = event.target as typeof event.target & {
+                value: { value: string };
+              };
+              setForm({
+                value: target.value.value,
+              });
+              setSubmitEnabled(true);
+            }}
           >
-            Save
-          </button>
-        </form>
-      </main>
+            <textarea
+              name="value"
+              defaultValue={match.scores}
+              className="m-2 h-3/5 w-[90vh] border border-blue-400 dark:border-[#44475a] dark:bg-[#282a36] dark:hover:bg-[#44475a]"
+              cols={21}
+            />
+            <br />
+            <button
+              type="submit"
+              className="inline-block rounded border-2 border-blue-600 px-6 py-2 text-xs font-medium uppercase leading-tight text-blue-600 transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 dark:border-[#44475a] dark:hover:bg-[#44475a]"
+            >
+              Save
+            </button>
+          </form>
+        </main>
+      </div>
     </>
   );
 };
