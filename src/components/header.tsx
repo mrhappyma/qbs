@@ -4,12 +4,14 @@ const Header: React.FC = () => {
   return (
     <div className="mb-6 border-b border-gray-200 bg-gray-100 pt-4 text-[#f8f8f2] dark:border-[#44475a] dark:bg-[#282a36]">
       <div className="md:md-6 container mx-auto mb-4">
-        <header className="ml-4 flex items-center justify-between px-2  md:px-0">
-          <Link className="flex items-center" href="/">
+        <header className="ml-4 flex items-center justify-between px-2 md:px-0">
+          <Link
+            className="flex items-center fill-gray-600 text-gray-600  dark:fill-[#f8f8f2] dark:text-[#f8f8f2] dark:hover:fill-[#44475a] dark:hover:text-[#44475a]"
+            href="/"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              fill="currentColor"
               className="h-6 w-6"
             >
               <path
@@ -23,10 +25,7 @@ const Header: React.FC = () => {
                 clipRule="evenodd"
               />
             </svg>
-            <div
-              className="ml-3 truncate text-lg font-semibold dark:text-[#f8f8f2] dark:hover:text-[#44475a]"
-              role="banner"
-            >
+            <div className="ml-3 truncate text-lg font-semibold" role="banner">
               QuizBowl Score
             </div>
           </Link>
