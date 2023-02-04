@@ -29,69 +29,71 @@ const TeamPage: NextPage<{ team: Team; session: Session }> = ({ team }) => {
       <Head>
         <title>{team.name}</title>
       </Head>
-      <Header />
-      <main className="m-4">
-        <form
-          onSubmit={(event: React.SyntheticEvent) => {
-            event.preventDefault();
-            const target = event.target as typeof event.target & {
-              name: { value: string };
-              logo: { value: string };
-              color1: { value: string };
-              color2: { value: string };
-            };
-            setForm({
-              id: team.id,
-              name: target.name.value,
-              logoUrl: target.logo.value,
-              color1: target.color1.value,
-              color2: target.color2.value,
-            });
-            setSubmitEnabled(true);
-          }}
-        >
-          <input
-            className="mb-4 rounded-sm border text-3xl hover:border-blue-400"
-            type="text"
-            name="name"
-            defaultValue={team.name}
-            minLength={3}
-            // eslint-disable-next-line @typescript-eslint/no-misused-promises
-          />
-          <br />
-          <label className="text-xs">
-            LOGO URL
-            <br />
-            <input
-              type="text"
-              name="logo"
-              id="logo"
-              className="border border-gray-500 text-base hover:border-blue-400"
-            />
-          </label>
-          <h3 className="pt-4 text-xl">Colors</h3>
-          <div className="flex-row justify-start">
-            <input
-              type="color"
-              name="color1"
-              defaultValue={team.color1 ?? undefined}
-              className="m-3"
-            />
-            <input
-              type="color"
-              name="color2"
-              defaultValue={team.color2 ?? undefined}
-              className="m-3"
-            />
-          </div>
-          <button
-            type="submit"
-            className="inline-block rounded border-2 border-blue-600 px-6 py-2 text-xs font-medium uppercase leading-tight text-blue-600 transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
+      <div className="h-screen w-screen dark:bg-[#282a36] dark:text-[#f8f8f2]">
+        <Header />
+        <main className="m-4">
+          <form
+            onSubmit={(event: React.SyntheticEvent) => {
+              event.preventDefault();
+              const target = event.target as typeof event.target & {
+                name: { value: string };
+                logo: { value: string };
+                color1: { value: string };
+                color2: { value: string };
+              };
+              setForm({
+                id: team.id,
+                name: target.name.value,
+                logoUrl: target.logo.value,
+                color1: target.color1.value,
+                color2: target.color2.value,
+              });
+              setSubmitEnabled(true);
+            }}
           >
-            Save
-          </button>
-        </form>
-      </main>
+            <input
+              className="mb-4 rounded-sm border text-3xl hover:border-blue-400 dark:bg-[#282a36] dark:text-[#f8f8f2] dark:hover:bg-[#44475a]"
+              type="text"
+              name="name"
+              defaultValue={team.name}
+              minLength={3}
+              // eslint-disable-next-line @typescript-eslint/no-misused-promises
+            />
+            <br />
+            <label className="text-xs">
+              LOGO URL
+              <br />
+              <input
+                type="text"
+                name="logo"
+                id="logo"
+                className="border border-gray-500 text-base hover:border-blue-400 dark:bg-[#282a36] dark:text-[#f8f8f2] dark:hover:bg-[#44475a]"
+              />
+            </label>
+            <h3 className="pt-4 text-xl">Colors</h3>
+            <div className="flex-row justify-start">
+              <input
+                type="color"
+                name="color1"
+                defaultValue={team.color1 ?? undefined}
+                className="m-3 dark:bg-[#282a36] dark:text-[#f8f8f2] dark:hover:bg-[#44475a]"
+              />
+              <input
+                type="color"
+                name="color2"
+                defaultValue={team.color2 ?? undefined}
+                className="m-3 dark:bg-[#282a36] dark:text-[#f8f8f2] dark:hover:bg-[#44475a]"
+              />
+            </div>
+            <button
+              type="submit"
+              className="inline-block rounded border-2 border-blue-600 px-6 py-2 text-xs font-medium uppercase leading-tight text-blue-600 transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 dark:bg-[#282a36] dark:text-[#f8f8f2] dark:hover:bg-[#44475a] dark:hover:bg-[#44475a]"
+            >
+              Save
+            </button>
+          </form>
+        </main>
+      </div>
     </>
   );
 };
