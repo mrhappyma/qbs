@@ -28,9 +28,6 @@ const ScoreMatch: NextPage<{
     team: number;
     amount: number;
   }>({ team: 1, amount: 0 });
-  const [undoData, setUndoData] = useState<{
-    team: number;
-  }>({ team: 1 });
 
   const scoreRequest = api.scoring.fetch.useQuery(
     { id: match.id },
@@ -55,7 +52,7 @@ const ScoreMatch: NextPage<{
   );
 
   api.scoring.undoLastEvent.useQuery(
-    { id: match.id, team: undoData.team },
+    { id: match.id },
     {
       enabled: undoLastEventEnabled,
       async onSuccess() {
@@ -83,8 +80,6 @@ const ScoreMatch: NextPage<{
                 team={1}
                 actionDataState={setActionData}
                 requestEnableState={setAddScoreEnabled}
-                undoDataState={setUndoData}
-                undoEnableState={setUndoLastEventEnabled}
               />
             </div>
             <div className="flex h-fit flex-col items-center justify-center border border-slate-700">
@@ -96,22 +91,28 @@ const ScoreMatch: NextPage<{
                 team={2}
                 actionDataState={setActionData}
                 requestEnableState={setAddScoreEnabled}
-                undoDataState={setUndoData}
-                undoEnableState={setUndoLastEventEnabled}
               />
             </div>
           </div>
-          <Link
-            href={`/match/${match.id}/score/raw`}
-            className="flex justify-center p-1"
-          >
+          <div className="flex flex-col items-center justify-center p-2">
             <button
+              onClick={() => {
+                setUndoLastEventEnabled(true);
+              }}
               type="button"
-              className="inline-block rounded border-2 border-gray-800 px-6 py-2 text-xs font-medium uppercase leading-tight text-gray-800 transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 dark:border-[#44475a] dark:text-[#f8f8f2] dark:hover:bg-[#44475a]"
+              className="inline-block rounded border-2 border-yellow-600 px-6 py-2 text-xs font-medium uppercase leading-tight text-gray-800 transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 dark:border-[#f1fa8c] dark:text-[#f8f8f2] dark:hover:bg-[#44475a]"
             >
-              edit raw data
+              ↺
             </button>
-          </Link>
+            <Link href={`/match/${match.id}/score/raw`} className="p-1">
+              <button
+                type="button"
+                className="inline-block rounded border-2 border-gray-800 px-6 py-2 text-xs font-medium uppercase leading-tight text-gray-800 transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 dark:border-[#44475a] dark:text-[#f8f8f2] dark:hover:bg-[#44475a]"
+              >
+                edit raw data
+              </button>
+            </Link>
+          </div>
         </main>
       </div>
     </>

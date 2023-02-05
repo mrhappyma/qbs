@@ -114,7 +114,6 @@ export const scoringRouter = createTRPCRouter({
     .input(
       z.object({
         id: z.string(),
-        team: z.number().min(1).max(2),
       })
     )
     .query(async ({ input, ctx }): Promise<undoLastMatchScoreEventResponse> => {
