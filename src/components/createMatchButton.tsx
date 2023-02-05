@@ -26,7 +26,8 @@ const CreateMatchButton: React.FC = () => {
     <div className="ml-4 hidden self-start md:block">
       <button
         className="rounded-lg border border-gray-400 bg-gray-300 p-3 px-3 dark:bg-[#282a36] dark:hover:bg-[#44475a]"
-        onClick={void createMatch}
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises
+        onClick={createMatch}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
