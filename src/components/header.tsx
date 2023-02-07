@@ -51,6 +51,12 @@ const Header: React.FC = () => {
           >
             Teams
           </Link>
+          <Link
+            className="group relative m-2 whitespace-nowrap text-gray-600 hover:text-gray-800 dark:text-[#f8f8f2] hover:dark:text-[#44475a]"
+            href="/about"
+          >
+            About
+          </Link>
         </nav>
       </div>
     </div>
