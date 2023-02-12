@@ -55,7 +55,7 @@ const MatchScoreBox: React.FC<{
   });
   return (
     <div
-      className={`h-full max-h-full w-full max-w-full overflow-scroll p-2 ${orbitron.className}`}
+      className={`h-full max-h-full w-full max-w-full overflow-y-auto p-2 ${orbitron.className}`}
     >
       {stuff}
       <div className="text-[10vh] text-slate-800">{totalScore}</div>
