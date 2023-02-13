@@ -5,7 +5,7 @@ import { getSession } from "next-auth/react";
 import Head from "next/head";
 import type { ParsedUrlQuery } from "node:querystring";
 import { useState } from "react";
-import MatchScoreBox from "./box";
+import MatchScoreBox from "../../../../../components/present/classic/box";
 import { appRouter } from "../../../../../server/api/root";
 import { api } from "../../../../../utils/api";
 import { prisma } from "../../../../../server/db";

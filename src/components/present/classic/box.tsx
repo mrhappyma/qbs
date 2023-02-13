@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Orbitron } from "@next/font/google";
-import { matchScoreEventType } from "../../../../../utils/enums";
+import { matchScoreEventType } from "../../../utils/enums";
 
 const orbitron = Orbitron({ subsets: ["latin"] });
 
