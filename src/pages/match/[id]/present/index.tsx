@@ -5,7 +5,7 @@ import { getSession } from "next-auth/react";
 import Head from "next/head";
 import type { ParsedUrlQuery } from "node:querystring";
 import Header from "../../../../components/header";
-import presentScreens from "./list";
+import presentScreens from "../../../../utils/present-list";
 import Image from "next/image";
 import Link from "next/link";
 
