@@ -10,7 +10,7 @@ A match scoring system based on [Lancaster-Lebanon Quiz Bowl League](https://www
 ![scoring a match (light mode)](demo-images/light/score.png#gh-light-mode-only)
 
 ![presenting scores](demo-images/present.png)
-*gradients are customized per team*
+_gradients are customized per team_
 
 ![configuring match settings (dark mode)](demo-images/dark/match-settings.png#gh-dark-mode-only)
 ![configuring match settings (light mode)](demo-images/light/match-settings.png#gh-light-mode-only)
@@ -28,3 +28,22 @@ This project uses the [t3 stack](https://create.t3.gg): next.js, tailwindcss, pr
 - Run `pnpm dev` (or again a similar command for your package manager) to start the development server
 - Open `localhost:3000`
 - Get to work!
+
+### Adding a scoreboard ("present") layout
+
+##### thank you for making things look nicer than i could ever make them :)
+
+- Create a folder in [`/src/pages/match/[id]/present`](/src/pages/match/[id]/present). Create your `index.tsx` file based off an existing page.
+- Add your page to [`/src/utils/present-list.ts`](/src/utils/present-list.ts). The "slug" is the name of the folder you created.
+- Once you're done, take a screenshot and add it as [`/public/present-screenshots/[slug].png`](/public/present-screenshots/). Screenshots should be consistent! Please make sure it
+  - Shows the entire screen
+  - If the match title shows on the screen, it should be the same as the layout name
+  - Team 1:
+    - Called "Team 1"
+    - Color 1: `#e5a50a`
+    - Color 2: `#b5835a`
+  - Team 2:
+    - Called "Team 2"
+    - Color 1: `#26a269`
+    - Color 2: `#99c1f1`
+- Create a PR and wait for me to merge!

@@ -1,4 +1,3 @@
-import type { Match, Team } from "@prisma/client";
 import type { GetServerSidePropsContext, NextPage, PreviewData } from "next";
 import type { Session } from "next-auth";
 import { getSession } from "next-auth/react";
