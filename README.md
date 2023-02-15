@@ -46,4 +46,5 @@ This project uses the [t3 stack](https://create.t3.gg): next.js, tailwindcss, pr
     - Called "Team 2"
     - Color 1: `#26a269`
     - Color 2: `#99c1f1`
+  - Each team should have a +5 +10 +15 and +5 event shown (total score of 25)
 - Create a PR and wait for me to merge!
