@@ -16,7 +16,7 @@ const PresentScores: NextPage<{
   for (const item of presentScreens) {
     items.push(
       <div
-        className="m-2 flex flex-col items-center justify-center p-1 dark:bg-[#f1fa8c]"
+        className="m-2 flex flex-col items-center justify-center bg-yellow-400 p-1 dark:bg-[#f1fa8c]"
         key={item.slug}
       >
         <Image
