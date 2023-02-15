@@ -40,11 +40,11 @@ This project uses the [t3 stack](https://create.t3.gg): next.js, tailwindcss, pr
   - If the match title shows on the screen, it should be the same as the layout name
   - Team 1:
     - Called "Team 1"
-    - Color 1: `#e5a50a`
-    - Color 2: `#b5835a`
+    - Color 1: `#2e393a`
+    - Color 2: `#459587`
   - Team 2:
     - Called "Team 2"
-    - Color 1: `#26a269`
-    - Color 2: `#99c1f1`
+    - Color 1: `#f8ba2d`
+    - Color 2: `#e23a45`
   - Each team should have a +5 +10 +15 and +5 event shown (total score of 25)
 - Create a PR and wait for me to merge!
